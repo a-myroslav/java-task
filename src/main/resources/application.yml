@@ -1,0 +1,7 @@
+app:
+  threads:
+    corePoolSize: 5
+    maxPoolSize: 5
+    threadNamePrefix: "ParserThread-"
+  source: "source.txt"
+  destination: "output.xml"
