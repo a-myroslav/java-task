@@ -1,5 +1,6 @@
 package com.eztexting.app.service.parser.common;
 
+import com.eztexting.app.service.parser.ParseResult;
 import com.eztexting.app.service.parser.ParserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,12 +20,12 @@ public class CommonParserService implements ParserService {
     private final Logger logger = LoggerFactory.getLogger(CommonParserService.class);
 
     @Async
-    public CompletableFuture<List<String>> getUrlContent(String url) throws Exception {
+    public CompletableFuture<ParseResult> getUrlContent(String url) throws Exception {
         List<String> urlContent = readUrl(new URL(url));
 
         logger.info("Url reading by " + Thread.currentThread().getName());
 
-        return CompletableFuture.completedFuture(urlContent);
+        return CompletableFuture.completedFuture(new ParseResult(url, urlContent));
     }
 
     public List<String> readUrl(URL url) {
